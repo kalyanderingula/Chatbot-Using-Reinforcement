@@ -33,9 +33,9 @@ Click the "Update" button to save the answers and update the chatbot's knowledge
 
 # API Endpoints
 
-# /get: Returns a response to a user's question or message
-# /update: Updates the chatbot's knowledge base with a new question and answer
-#/admin: Returns a list of unknown questions for the administrator to view and update
+/get: Returns a response to a user's question or message
+/update: Updates the chatbot's knowledge base with a new question and answer
+/admin: Returns a list of unknown questions for the administrator to view and update
 
 # Code Structure
 
