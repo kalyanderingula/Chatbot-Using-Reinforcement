@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot Interface</title>
+  </head>
+  <body>
+    <h1>Hello this is kalyan, How can I help you</h1>
+    <h1>Please type your question related to Python installation</h1>
+    <div>
+      <input type="text" id="userInput" placeholder="Ask a question..." />
+      <button onclick="getResponse()">Send</button>
+    </div>
+    <div id="chatbox"></div>
+    <script>
+      function getResponse() {
+        const userText = document.getElementById("userInput").value;
+        fetch(`/get?msg=${userText}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += `<p>User: ${userText}</p>`;
+            chatbox.innerHTML += `<p>Bot: ${data}</p>`;
+          });
+      }
+    </script>
+  </body>
+</html>

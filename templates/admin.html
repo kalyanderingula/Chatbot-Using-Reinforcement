@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Interface</title>
+  </head>
+  <body>
+    <h1>Admin Interface</h1>
+    <div id="questions">
+      {% for question in questions %}
+      <div class="question-box">
+        <strong>Question:</strong> {{ question }}<br />
+        <textarea
+          class="answer-input"
+          placeholder="Type the answer..."
+        ></textarea>
+        <button
+          onclick="submitAnswer('{{ question }}', this.previousElementSibling.value)"
+        >
+          Submit
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+
+    <script>
+      function submitAnswer(question, answer) {
+        fetch("/update", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: question, answer: answer }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Answer submitted successfully!");
+              location.reload(); // Reload the page to reflect changes
+            }
+          });
+      }
+    </script>
+  </body>
+</html>
